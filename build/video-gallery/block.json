@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "intranet/video-gallery",
+  "version": "2.1.0",
+  "title": "Video Gallery",
+  "category": "intranet",
+  "icon": "format-video",
+  "description": "YouTube, Vimeo or MP4 videos as thumbnails that play in a pop-up player.",
+  "keywords": [
+    "videos",
+    "youtube",
+    "vimeo",
+    "training"
+  ],
+  "textdomain": "intranet-blocks",
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

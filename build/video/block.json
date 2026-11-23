@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "intranet/video",
+  "version": "2.1.0",
+  "title": "Video",
+  "category": "intranet",
+  "icon": "video-alt3",
+  "parent": [
+    "intranet/video-gallery"
+  ],
+  "description": "One video inside the Video Gallery.",
+  "textdomain": "intranet-blocks",
+  "attributes": {
+    "url": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "duration": {
+      "type": "string",
+      "default": ""
+    },
+    "posterId": {
+      "type": "number",
+      "default": 0
+    },
+    "posterUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "editorScript": "file:./index.js"
+}

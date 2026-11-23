@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "intranet/slide",
+  "version": "2.0.0",
+  "title": "Slide",
+  "category": "intranet",
+  "icon": "format-image",
+  "parent": [
+    "intranet/carousel"
+  ],
+  "description": "One slide inside the Portal Carousel.",
+  "textdomain": "intranet-blocks",
+  "attributes": {
+    "mediaId": {
+      "type": "number",
+      "default": 0
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "overlay": {
+      "type": "number",
+      "default": 55
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "opensInNewTab": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "editorScript": "file:./index.js"
+}
