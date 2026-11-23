@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "intranet/accordion-item",
+	"version": "2.0.0",
+	"title": "Accordion Section",
+	"category": "intranet",
+	"icon": "arrow-down-alt2",
+	"parent": [ "intranet/accordion" ],
+	"description": "One collapsible section.",
+	"textdomain": "intranet-blocks",
+	"attributes": {
+		"title": { "type": "string", "default": "" },
+		"meta": { "type": "string", "default": "" },
+		"isOpen": { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js"
+}

@@ -1,0 +1,33 @@
+@use "../shared/tokens" as *;
+
+.wp-block-intranet-stats {
+	@include tokens;
+	@include auto-grid(10rem);
+
+	.wp-block-intranet-stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35em;
+		margin: 0;
+		padding: 1.2em 1.3em;
+		border-inline-start: 3px solid var(--ib-accent);
+		border-radius: 0 var(--ib-radius) var(--ib-radius) 0;
+		background: var(--ib-soft);
+		text-align: start;
+	}
+
+	.ib-stat__value {
+		color: var(--ib-accent);
+		font-size: 2.3em;
+		font-variant-numeric: tabular-nums;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.05;
+	}
+
+	.ib-stat__label {
+		color: var(--ib-muted);
+		font-size: 0.9em;
+		line-height: 1.4;
+	}
+}

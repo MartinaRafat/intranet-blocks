@@ -1,0 +1,169 @@
+@use "../shared/tokens" as *;
+
+.wp-block-intranet-video-gallery {
+	@include tokens;
+	@include auto-grid(15rem);
+	--ib-gap: 1.25rem;
+
+	figure.wp-block-intranet-video {
+		margin: 0;
+	}
+
+	.ib-video__open {
+		position: relative;
+		display: block;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		border-radius: var(--ib-radius);
+		background: linear-gradient(135deg, var(--ib-accent), color-mix(in srgb, var(--ib-accent) 40%, #020617));
+		color: #fff;
+		text-decoration: none;
+		box-shadow: none;
+
+		&:hover {
+			img {
+				scale: 1.04;
+			}
+
+			.ib-video__play {
+				scale: 1.08;
+			}
+		}
+
+		&:focus-visible {
+			@include focus-ring;
+		}
+	}
+
+	img.ib-video__poster {
+		display: block;
+		inline-size: 100%;
+		max-inline-size: none;
+		block-size: 100%;
+		margin: 0;
+		object-fit: cover;
+		transition: scale 0.4s ease;
+	}
+
+	.ib-video__placeholder {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(circle at 80% 20%, rgb(255 255 255 / 15%), transparent 50%);
+	}
+
+	.ib-video__play {
+		position: absolute;
+		inset-block-start: 50%;
+		inset-inline-start: 50%;
+		display: grid;
+		place-items: center;
+		inline-size: 3.4em;
+		block-size: 3.4em;
+		margin-block-start: -1.7em;
+		margin-inline-start: -1.7em;
+		border-radius: 999px;
+		background: rgb(255 255 255 / 94%);
+		box-shadow: 0 6px 18px rgb(2 6 23 / 30%);
+		color: var(--ib-accent);
+		transition: scale 0.2s ease;
+
+		svg {
+			margin-inline-start: 0.15em;
+		}
+	}
+
+	.ib-video__duration {
+		position: absolute;
+		inset-block-end: 0.6em;
+		inset-inline-end: 0.6em;
+		padding: 0.15em 0.5em;
+		border-radius: 6px;
+		background: rgb(2 6 23 / 72%);
+		color: #fff;
+		font-size: 0.75em;
+		font-variant-numeric: tabular-nums;
+		font-weight: 600;
+	}
+
+	.ib-video__empty {
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 0.8em;
+		color: rgb(255 255 255 / 85%);
+		font-size: 0.8em;
+		text-align: center;
+	}
+
+	figcaption.ib-video__title {
+		margin: 0.7em 0 0;
+		color: inherit;
+		font-size: 0.98em;
+		font-weight: 650;
+		line-height: 1.35;
+		text-align: start;
+	}
+}
+
+// The player dialog lives at the end of <body>, outside the block.
+dialog.ib-video-dialog {
+	inline-size: min(960px, 92vw);
+	max-inline-size: none;
+	padding: 0;
+	overflow: visible;
+	border: 0;
+	border-radius: 14px;
+	background: #000;
+
+	&::backdrop {
+		background: rgb(2 6 23 / 78%);
+	}
+
+	.ib-video-dialog__frame {
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		border-radius: 14px;
+
+		iframe,
+		video {
+			display: block;
+			inline-size: 100%;
+			block-size: 100%;
+			border: 0;
+		}
+	}
+
+	button.ib-video-dialog__close {
+		@include button-reset;
+		position: absolute;
+		inset-block-start: -3em;
+		inset-inline-end: 0;
+		display: grid;
+		place-items: center;
+		inline-size: 2.4em;
+		block-size: 2.4em;
+		border-radius: 999px;
+		background: #fff;
+		color: #0f172a;
+
+		&:focus-visible {
+			outline: 2px solid #fff;
+			outline-offset: 3px;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-intranet-video-gallery {
+		img.ib-video__poster,
+		.ib-video__play {
+			transition: none;
+		}
+
+		.ib-video__open:hover {
+			img,
+			.ib-video__play {
+				scale: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "intranet/announcement",
+	"version": "2.1.0",
+	"title": "Announcement Bar",
+	"category": "intranet",
+	"icon": "warning",
+	"description": "A short notice at the top of the page. People can close it, and it stays closed until the message changes.",
+	"keywords": [ "alert", "notice", "banner" ],
+	"textdomain": "intranet-blocks",
+	"attributes": {
+		"message": { "type": "string", "default": "" },
+		"linkText": { "type": "string", "default": "" },
+		"linkUrl": { "type": "string", "default": "" },
+		"tone": { "type": "string", "default": "info" },
+		"dismissible": { "type": "boolean", "default": true },
+		"dismissKey": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": { "margin": true }
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

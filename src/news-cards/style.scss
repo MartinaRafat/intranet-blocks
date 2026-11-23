@@ -1,0 +1,150 @@
+@use "../shared/tokens" as *;
+
+.wp-block-intranet-news-cards {
+	@include tokens;
+	@include chips;
+	position: relative;
+	--ib-gap: 1.5rem;
+
+	.ib-news__grid {
+		@include auto-grid(16rem);
+	}
+
+	.ib-news-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		margin: 0;
+		border: 1px solid var(--ib-line);
+		border-radius: var(--ib-radius);
+		background: #fff;
+		color: var(--ib-ink);
+		text-align: start;
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+		&:hover {
+			box-shadow: var(--ib-shadow);
+			transform: translateY(-2px);
+
+			img {
+				scale: 1.04;
+			}
+		}
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	a.ib-news-card__image {
+		display: block;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+
+		img {
+			display: block;
+			inline-size: 100%;
+			max-inline-size: none;
+			block-size: 100%;
+			margin: 0;
+			object-fit: cover;
+			transition: scale 0.4s ease;
+		}
+	}
+
+	.ib-news-card__body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 0.5em;
+		padding: 1.1em 1.2em 1.2em;
+	}
+
+	.ib-news-card__category {
+		align-self: flex-start;
+		padding: 0.2em 0.65em;
+		border-radius: 999px;
+		background: var(--ib-soft);
+		color: var(--ib-accent);
+		font-size: 0.75em;
+		font-weight: 650;
+		line-height: 1.4;
+	}
+
+	h3.ib-news-card__title {
+		@include heading-reset;
+		font-size: 1.1em;
+		line-height: 1.35;
+
+		a {
+			@include link-reset;
+
+			// One link per card, but the whole card is clickable.
+			&::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+			}
+
+			&:focus-visible {
+				@include focus-ring;
+			}
+		}
+	}
+
+	p.ib-news-card__excerpt {
+		margin: 0;
+		color: color-mix(in srgb, var(--ib-ink) 70%, transparent);
+		font-size: 0.92em;
+		line-height: 1.55;
+	}
+
+	p.ib-news-card__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35em 1em;
+		margin: auto 0 0;
+		padding-block-start: 0.5em;
+		color: color-mix(in srgb, var(--ib-ink) 55%, transparent);
+		font-size: 0.8em;
+	}
+
+	// Featured: first card takes two columns and two rows when there's room.
+	@container (min-width: 760px) {
+		&.ib-news--featured .ib-news__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		&.ib-news--featured .ib-news-card:first-child {
+			grid-column: span 2;
+			grid-row: span 2;
+
+			a.ib-news-card__image {
+				aspect-ratio: 16 / 9;
+			}
+
+			h3.ib-news-card__title {
+				font-size: 1.6em;
+				line-height: 1.2;
+			}
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-intranet-news-cards {
+		.ib-news-card,
+		a.ib-news-card__image img {
+			transition: none;
+		}
+
+		.ib-news-card:hover {
+			transform: none;
+
+			img {
+				scale: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "intranet/quick-link",
+	"version": "2.0.0",
+	"title": "Quick Link",
+	"category": "intranet",
+	"icon": "admin-links",
+	"parent": [ "intranet/quick-links" ],
+	"description": "One tile inside Quick Links.",
+	"textdomain": "intranet-blocks",
+	"attributes": {
+		"label": { "type": "string", "default": "" },
+		"description": { "type": "string", "default": "" },
+		"url": { "type": "string", "default": "" },
+		"opensInNewTab": { "type": "boolean", "default": false },
+		"icon": { "type": "string", "default": "link" },
+		"badge": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js"
+}

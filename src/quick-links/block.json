@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "intranet/quick-links",
+	"version": "2.0.0",
+	"title": "Quick Links",
+	"category": "intranet",
+	"icon": "screenoptions",
+	"description": "Icon tiles for the tools people open every day.",
+	"keywords": [ "tiles", "shortcuts", "tools" ],
+	"textdomain": "intranet-blocks",
+	"attributes": {
+		"columns": { "type": "number", "default": 4 }
+	},
+	"styles": [
+		{ "name": "soft", "label": "Soft", "isDefault": true },
+		{ "name": "outline", "label": "Outline" },
+		{ "name": "solid", "label": "Solid" }
+	],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}

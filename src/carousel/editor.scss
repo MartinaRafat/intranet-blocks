@@ -1,0 +1,27 @@
+// In the editor the slides are stacked so each one is easy to edit.
+// The extra class only exists in the editor, and it also makes these
+// rules win over the front-end styles, whichever file loads first.
+.wp-block-intranet-carousel {
+	.ib-carousel__hint {
+		margin: 0 0 0.75rem;
+	}
+
+	.ib-carousel__track.block-editor-block-list__layout {
+		display: grid;
+		grid-auto-columns: auto;
+		grid-auto-flow: row;
+		gap: 1rem;
+		overflow: visible;
+		scroll-snap-type: none;
+	}
+
+	.ib-carousel__track.block-editor-block-list__layout > .wp-block-intranet-slide {
+		border-radius: var(--ib-radius);
+	}
+
+	.ib-slide__hint {
+		margin: 0.75em 0 0;
+		color: rgb(255 255 255 / 75%);
+		font-size: 0.8rem;
+	}
+}

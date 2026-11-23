@@ -1,0 +1,83 @@
+@use "../shared/tokens" as *;
+
+.wp-block-intranet-announcement {
+	@include tokens;
+	--ib-tone: var(--ib-accent);
+	display: flex;
+	gap: 0.75em;
+	align-items: center;
+	padding: 0.85em 1em;
+	border: 1px solid color-mix(in srgb, var(--ib-tone) 30%, transparent);
+	border-radius: 12px;
+	background: color-mix(in srgb, var(--ib-tone) 9%, #fff);
+	color: var(--ib-ink);
+
+	&.is-tone-success {
+		--ib-tone: #15803d;
+	}
+
+	&.is-tone-warning {
+		--ib-tone: #b45309;
+	}
+
+	&.is-tone-urgent {
+		--ib-tone: #b91c1c;
+		border-color: var(--ib-tone);
+		background: var(--ib-tone);
+		color: #fff;
+
+		.ib-announce__icon,
+		a.ib-announce__link,
+		span.ib-announce__link {
+			color: #fff;
+		}
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	.ib-announce__icon {
+		display: flex;
+		flex-shrink: 0;
+		color: var(--ib-tone);
+	}
+
+	p.ib-announce__text {
+		flex: 1;
+		margin: 0;
+		font-size: 0.95em;
+		line-height: 1.45;
+	}
+
+	a.ib-announce__link,
+	span.ib-announce__link {
+		flex-shrink: 0;
+		color: var(--ib-tone);
+		font-size: 0.9em;
+		font-weight: 650;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		box-shadow: none;
+	}
+
+	button.ib-announce__close {
+		@include button-reset;
+		display: grid;
+		flex-shrink: 0;
+		place-items: center;
+		inline-size: 2em;
+		block-size: 2em;
+		border-radius: 999px;
+		opacity: 0.7;
+
+		&:hover {
+			background: color-mix(in srgb, currentColor 10%, transparent);
+			opacity: 1;
+		}
+
+		&:focus-visible {
+			@include focus-ring;
+		}
+	}
+}

@@ -1,0 +1,136 @@
+// Shared look for all blocks.
+//
+// Colors, font and text size come from Settings > Intranet Blocks, which
+// prints --ib-brand, --ib-font-family and --ib-scale on :root.
+
+@mixin tokens {
+	--ib-accent: var(--ib-brand, #0f766e);
+	--ib-on-accent: #fff;
+	--ib-ink: #0f172a;
+	--ib-muted: color-mix(in srgb, currentColor 65%, transparent);
+	--ib-line: color-mix(in srgb, currentColor 12%, transparent);
+	--ib-soft: color-mix(in srgb, var(--ib-accent) 8%, transparent);
+	--ib-radius: 16px;
+	--ib-gap: 1rem;
+	--ib-shadow: 0 1px 2px rgb(15 23 42 / 6%), 0 12px 28px -14px rgb(15 23 42 / 22%);
+	box-sizing: border-box;
+	container-type: inline-size;
+	font-family: var(--ib-font-family, inherit);
+	font-size: calc(var(--ib-scale, 1) * 1rem);
+	line-height: 1.5;
+}
+
+// Responsive grid that never goes above --ib-columns and never squeezes
+// a card below $min. No media queries needed, so it adapts to sidebars
+// and narrow theme content areas too.
+@mixin auto-grid($min) {
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(max(#{$min}, calc((100% - (var(--ib-columns, 3) - 1) * var(--ib-gap)) / var(--ib-columns, 3))), 1fr)
+	);
+	gap: var(--ib-gap);
+}
+
+// Themes often style every button, heading and link. These resets are
+// scoped to our own classes so the blocks look the same on any theme.
+@mixin button-reset {
+	appearance: none;
+	inline-size: auto;
+	block-size: auto;
+	min-inline-size: 0;
+	min-block-size: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	color: inherit;
+	font: inherit;
+	letter-spacing: normal;
+	line-height: 1.2;
+	text-shadow: none;
+	text-transform: none;
+	cursor: pointer;
+}
+
+@mixin heading-reset {
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	font-family: inherit;
+	font-weight: 650;
+	letter-spacing: -0.01em;
+	text-transform: none;
+}
+
+@mixin link-reset {
+	color: inherit;
+	text-decoration: none;
+	box-shadow: none;
+}
+
+@mixin focus-ring {
+	outline: 2px solid var(--ib-accent);
+	outline-offset: 3px;
+}
+
+@mixin screen-reader-text {
+	.screen-reader-text {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+}
+
+@mixin chips {
+	.ib-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-block-end: 1.25rem;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	button.ib-chip {
+		@include button-reset;
+		padding: 0.45em 1em;
+		border: 1px solid var(--ib-line);
+		border-radius: 999px;
+		font-size: 0.875em;
+		font-weight: 500;
+		transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+
+		&:hover {
+			border-color: var(--ib-accent);
+			color: var(--ib-accent);
+		}
+
+		&[aria-pressed="true"] {
+			border-color: var(--ib-accent);
+			background: var(--ib-accent);
+			color: var(--ib-on-accent);
+		}
+
+		&:focus-visible {
+			@include focus-ring;
+		}
+	}
+
+	.ib-status {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: 0;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+}

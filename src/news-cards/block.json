@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "intranet/news-cards",
+	"version": "2.0.0",
+	"title": "News Cards",
+	"category": "intranet",
+	"icon": "megaphone",
+	"description": "Latest news with a featured layout, category filters and reading time.",
+	"keywords": [ "posts", "news", "latest" ],
+	"textdomain": "intranet-blocks",
+	"attributes": {
+		"categoryId": { "type": "number", "default": 0 },
+		"count": { "type": "number", "default": 3 },
+		"columns": { "type": "number", "default": 3 },
+		"layout": { "type": "string", "default": "featured" },
+		"showFilters": { "type": "boolean", "default": true },
+		"showImage": { "type": "boolean", "default": true },
+		"showDate": { "type": "boolean", "default": true },
+		"showExcerpt": { "type": "boolean", "default": true },
+		"showReadingTime": { "type": "boolean", "default": true }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": { "margin": true, "padding": true }
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

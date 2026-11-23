@@ -1,0 +1,173 @@
+@use "../shared/tokens" as *;
+
+.wp-block-intranet-accordion {
+	@include tokens;
+	@include screen-reader-text;
+	overflow: hidden;
+	border: 1px solid var(--ib-line);
+	border-radius: var(--ib-radius);
+
+	.ib-accordion__toolbar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75em;
+		align-items: center;
+		padding: 0.9em 1.1em;
+		border-block-end: 1px solid var(--ib-line);
+		background: var(--ib-soft);
+	}
+
+	.ib-accordion__search {
+		flex: 1 1 15em;
+		margin: 0;
+	}
+
+	input.ib-accordion__input {
+		box-sizing: border-box;
+		inline-size: 100%;
+		block-size: auto;
+		min-block-size: 0;
+		margin: 0;
+		padding: 0.6em 1em;
+		border: 1px solid var(--ib-line);
+		border-radius: 999px;
+		background: #fff;
+		box-shadow: none;
+		color: var(--ib-ink);
+		font: inherit;
+		font-size: 0.95em;
+		line-height: 1.3;
+
+		&:focus-visible {
+			@include focus-ring;
+		}
+	}
+
+	button.ib-accordion__toggle {
+		@include button-reset;
+		padding: 0.55em 1em;
+		border-radius: 999px;
+		color: var(--ib-accent);
+		font-size: 0.9em;
+		font-weight: 650;
+
+		&:hover {
+			background: color-mix(in srgb, var(--ib-accent) 12%, transparent);
+		}
+
+		&:focus-visible {
+			@include focus-ring;
+		}
+	}
+
+	p.ib-accordion__empty {
+		margin: 0;
+		color: var(--ib-muted);
+		font-size: 0.9em;
+
+		&:not(:empty) {
+			padding: 0.9em 1.1em;
+		}
+	}
+
+	.wp-block-intranet-accordion-item {
+		margin: 0;
+		border-block-end: 1px solid var(--ib-line);
+
+		&:last-of-type {
+			border-block-end: 0;
+		}
+
+		&[hidden] {
+			display: none;
+		}
+
+		> summary,
+		> .ib-accordion-item__head {
+			display: flex;
+			gap: 1em;
+			align-items: center;
+			padding: 1em 1.1em;
+			cursor: pointer;
+			list-style: none;
+		}
+
+		> summary::-webkit-details-marker {
+			display: none;
+		}
+
+		// Chevron as a mask, so the RTL build has nothing to flip.
+		> summary::after {
+			content: "";
+			flex-shrink: 0;
+			inline-size: 1em;
+			block-size: 1em;
+			background: currentColor;
+			opacity: 0.55;
+			transition: transform 0.2s ease;
+			-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+			mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+		}
+
+		&[open] > summary::after {
+			transform: rotate(180deg);
+		}
+
+		> summary:hover {
+			background: var(--ib-soft);
+		}
+
+		> summary:focus-visible {
+			@include focus-ring;
+			outline-offset: -2px;
+		}
+	}
+
+	.ib-accordion-item__title {
+		flex: 1;
+		font-size: 1em;
+		font-weight: 650;
+	}
+
+	.ib-accordion-item__meta {
+		padding: 0.2em 0.65em;
+		border-radius: 999px;
+		background: var(--ib-soft);
+		color: var(--ib-accent);
+		font-size: 0.78em;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	.ib-accordion-item__content {
+		padding: 0 1.1em 1.1em;
+		color: var(--ib-muted);
+		font-size: 0.95em;
+
+		> :first-child {
+			margin-block-start: 0;
+		}
+
+		> :last-child {
+			margin-block-end: 0;
+		}
+
+		.wp-block-file {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75em;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.7em 0.9em;
+			border: 1px solid var(--ib-line);
+			border-radius: 10px;
+			color: inherit;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-intranet-accordion .wp-block-intranet-accordion-item > summary::after {
+		transition: none;
+	}
+}
